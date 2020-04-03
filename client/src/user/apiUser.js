@@ -1,7 +1,8 @@
 import { API } from '../config'
+require('dotenv').config()
 
 export const read = (userId, token) => {
-    return fetch(`${API}/user/${userId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/user/${userId}`, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -16,7 +17,7 @@ export const read = (userId, token) => {
 }
 
 export const update = (userId, token, user) => {
-    return fetch(`${API}/user/${userId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/user/${userId}`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
@@ -47,7 +48,7 @@ export const updateUser = (user, next) => {
 
 
 export const getPurchaseHistory = (userId, token) => {
-    return fetch(`${API}/orders/by/user/${userId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/orders/by/user/${userId}`, {
         method: "GET",
         headers: {
             Accept: "application/json",
