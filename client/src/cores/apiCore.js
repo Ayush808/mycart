@@ -1,8 +1,10 @@
 import { API } from '../config'
 import queryString from 'querystring'
+require('dotenv').config()
+
 
 export const getProducts = (sortBy) => {
-    return fetch(`${API}/products?sortBy=${sortBy}&order=desc&limit=6`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/products?sortBy=${sortBy}&order=desc&limit=6`, {
         method: "GET"
     }).then(response => {
         return response.json()
@@ -10,7 +12,7 @@ export const getProducts = (sortBy) => {
 }
 
 export const getAllCategories = () => {
-    return fetch(`${API}/categories`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/categories`, {
         method: "GET"
     }).then(response => {
         return response.json()
@@ -30,7 +32,7 @@ export const list = params => {
 }
 
 export const read = productId => {
-    return fetch(`${API}/product/${productId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/product/${productId}`, {
         method: "GET"
     })
         .then(response => {
@@ -40,7 +42,7 @@ export const read = productId => {
 }
 
 export const listRelated = productId => {
-    return fetch(`${API}/products/related/${productId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/products/related/${productId}`, {
         method: "GET"
     })
         .then(response => {
@@ -56,7 +58,7 @@ export const getFilteredProducts = (skip, limit, filters = {}) => {
         limit, skip, filters
     }
 
-    return fetch(`${API}/products/by/search`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/products/by/search`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -73,7 +75,7 @@ export const getFilteredProducts = (skip, limit, filters = {}) => {
 }
 
 export const getBraintreeClientToken = (userId, token) => {
-    return fetch(`${API}/braintree/getToken/${userId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/braintree/getToken/${userId}`, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -88,7 +90,7 @@ export const getBraintreeClientToken = (userId, token) => {
 }
 
 export const processPayment = (userId, token, paymentData) => {
-    return fetch(`${API}/braintree/payment/${userId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/braintree/payment/${userId}`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -104,7 +106,7 @@ export const processPayment = (userId, token, paymentData) => {
 }
 
 export const createOrder = (userId, token, createOrderData) => {
-    return fetch(`${API}/order/create/${userId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/order/create/${userId}`, {
         method: "POST",
         headers: {
             Accept: "application/json",
