@@ -32,8 +32,9 @@ exports.createCategory = (req, res) => {
 }
 
 exports.updateCategory = (req, res) => {
-    const category = req.category;
-    category.name = req.body.name;
+    const category = req.category
+    category.name = req.body.name
+
     category.save((err, data) => {
         if (err) {
             return res.status(400).json({
